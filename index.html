@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="advice-card" style="width: 300px; padding: 20px; text-align: center;">
+        <h3>Today's Advice</h3>
+        <p id="advice"></p>
+        <button id="get-advice-btn">Get New Advice</button>
+    </div>
+
+    <script>
+        const getAdvice = () => {
+            fetch('https://api.adviceslip.com/advice')
+                .then(response => response.json())
+                .then(data => {
+                    document.querySelector('#advice').innerText = data.slip.advice;
+                })
+                .catch(error => console.error(error));
+        };
+
+        document.querySelector('#get-advice-btn').addEventListener('click', getAdvice);
+
+        // Get the first advice when the page loads
+        getAdvice();
+    </script>
+</body>
+
+
+
+</html>
